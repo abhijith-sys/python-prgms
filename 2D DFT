@@ -1,0 +1,26 @@
+import numpy as np
+from PIL import Image
+import matplotlib.pyplot as plt
+def DFT2D(image):
+ data = np.asarray(image)
+ M, N = image.size
+ dft2d = np.zeros((M, N), dtype=complex)
+ for k in range(M):
+ for l in range(N):
+ sum_matrix = 0.0
+ for m in range(M):
+ for n in range(N):
+ e = np.exp(-2j * np.pi * ((k * m) / M + (l * n) / N))
+ sum_matrix += data[m, n] * e
+ dft2d[k, l] = sum_matrix
+ return dft2d
+img = Image.open("img/my_img.jpg").convert('L')
+img2 = img.resize((50, 50))
+dft = DFT2D(img2)
+dft_shifted = np.fft.fftshift(dft)
+magnitude_spectrum = 20 * np.log10(np.abs(dft_shifted) + 1e-6)
+plt.subplot(121), plt.imshow(img2, cmap='gray'), plt.title('Original Image')
+plt.xticks([]), plt.yticks([])
+plt.subplot(122), plt.imshow(magnitude_spectrum, cmap='gray'), plt.title('DFT Magnitude')
+plt.xticks([]), plt.yticks([])
+plt.show()
