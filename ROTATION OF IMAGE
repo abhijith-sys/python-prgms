@@ -1,0 +1,22 @@
+from PIL import Image
+
+def rotate_image(image_path, angle, save_path='rotated_image.jpg'):
+    """Rotate the image by the given angle and save it."""
+    # Open the image
+    image = Image.open(image_path)
+    
+    # Rotate the image by the specified angle
+    rotated_image = image.rotate(angle, expand=True)
+    
+    # Save the rotated image
+    rotated_image.save(save_path)
+    
+    # Show the rotated image
+    rotated_image.show()
+
+# Set the image path and rotation angle
+image_path = 'img/my_img.jpg'
+angle = 90
+
+# Call the rotate function
+rotate_image(image_path, angle)
