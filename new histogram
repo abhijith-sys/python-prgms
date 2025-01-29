@@ -1,0 +1,20 @@
+import matplotlib.pyplot as plt
+from PIL import Image
+
+def create_hist(img):
+    # creating histogram values
+    hist_img = img.histogram()
+
+    # creating histogram
+    plt.hist(hist_img,bins=len(hist_img), edgecolor='black')
+
+    # creating histogram labels
+    plt.xlabel('Value')
+    plt.ylabel('Frequency')
+    plt.title('Histogram')
+
+    # displaying histogram
+    plt.show()
+
+img = Image.open('img/my_img.jpg').convert('L')
+create_hist(img)
