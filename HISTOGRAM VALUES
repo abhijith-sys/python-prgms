@@ -1,0 +1,14 @@
+from PIL import Image
+
+def create_histogram(image):
+    """Create a histogram of the image."""
+    return image.histogram()
+
+# Open the image and convert it to grayscale
+image = Image.open('img/my_img.jpg').convert('L')
+
+# Generate the histogram
+histogram = create_histogram(image)
+
+# Print the histogram
+print("Histogram:", histogram)
