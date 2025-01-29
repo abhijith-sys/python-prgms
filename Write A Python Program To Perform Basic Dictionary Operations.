@@ -1,0 +1,28 @@
+def print_dictionary(dictionary):
+    for key, value in dictionary.items():
+        print(key, ":", value)
+
+my_dict = {}
+my_dict["name"] = "John"
+my_dict["age"] = 25
+my_dict["country"] = "USA"
+
+print("Dictionary after adding elements:")
+print_dictionary(my_dict)
+
+print("\nAccessing values using keys:")
+print("Name:", my_dict["name"])
+print("Age:", my_dict["age"])
+
+my_dict["age"] = 26
+print("\nDictionary after updating age:")
+print_dictionary(my_dict)
+
+del my_dict["country"]
+print("\nDictionary after removing country:")
+print_dictionary(my_dict)
+
+if "name" in my_dict:
+    print("\n'name' is present in the dictionary.")
+else:
+    print("\n'name' is not present in the dictionary.")
