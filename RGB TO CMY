@@ -1,0 +1,14 @@
+def rgb_to_cmy(r, g, b):
+    # Convert RGB values to CMY (Cyan, Magenta, Yellow)
+    c = 1 - r / 255
+    m = 1 - g / 255
+    y = 1 - b / 255
+    return (c, m, y)
+
+# Input RGB values from the user
+r = int(input("Enter value for Red (0-255): "))
+g = int(input("Enter value for Green (0-255): "))
+b = int(input("Enter value for Blue (0-255): "))
+
+# Print the CMY result
+print(rgb_to_cmy(r, g, b))
