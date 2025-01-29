@@ -1,0 +1,20 @@
+import os
+def read_file(file_path):
+ if not os.path.exists(file_path):
+ return ""
+ with open(file_path, 'r') as file:
+ return file.read()
+def write_to_file(file_path, content):
+ with open(file_path, 'w') as file:
+ file.write(content)
+def file_exists(file_path):
+ return os.path.exists(file_path)
+file_path = 'example.txt'
+content = read_file(file_path)
+print("File content:")
+print(content)
+new_content = "This is new content."
+write_to_file(file_path, new_content)
+print("New content written to file.")
+file_exists = file_exists(file_path)
+print("File exists?", file_exists)
