@@ -1,0 +1,43 @@
+from PIL import Image
+import numpy as np
+def log_transform(image_array):
+ c = 255 / np.log(1 + np.max(image_array))
+ log_transformed = c * np.log(1 + image_array)
+ return log_transformed.astype(np.uint8)
+def gamma_correction(image_array, gamma):
+ gamma_corrected = np.array(255 * (image_array / 255) ** gamma, dtype=np.uint8)
+ return gamma_corrected
+def contrast_stretching(image_array, r1, s1, r2, s2):
+ def pixel_map(pix):
+ if 0 <= pix and pix <= r1:
+ return (s1 / r1) * pix
+ elif r1 < pix and pix <= r2:
+ return ((s2 - s1) / (r2 - r1)) * (pix - r1) + s1
+ else:
+ return ((255 - s2) / (255 - r2)) * (pix - r2) + s2
+ pixel_map_vec = np.vectorize(pixel_map)
+ return pixel_map_vec(image_array).astype(np.uint8)
+image_path = 'img/my_img.jpg'
+image = Image.open(image_path).convert('L')
+image_array = np.array(image)
+inverted_array = 255 - image_array
+log_transformed = log_transform(image_array)
+gamma_corrected = gamma_correction(image_array, 0.5)
+r1 = 70
+s1 = 0
+r2 = 140
+s2 = 255
+34
+contrast_stretched = contrast_stretching(image_array, r1, s1, r2, s2)
+inverted_image = Image.fromarray(inverted_array)
+log_transformed_image = Image.fromarray(log_transformed)
+gamma_corrected_image = Image.fromarray(gamma_corrected)
+contrast_stretched_image = Image.fromarray(contrast_stretched)
+inverted_image.save('inverted_image.jpg')
+log_transformed_image.save('log_transformed_image.jpg')
+gamma_corrected_image.save('gamma_corrected_image.jpg')
+contrast_stretched_image.save('contrast_stretched_image.jpg')
+inverted_image.show()
+log_transformed_image.show()
+gamma_corrected_image.show()
+contrast_stretched_image.show()
