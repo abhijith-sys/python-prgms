@@ -1,0 +1,41 @@
+class Car:
+    def __init__(self):
+        self.make = ""
+        self.model = ""
+        self.year = 0
+        self.speed = 0
+
+    def set_make(self, make):
+        self.make = make
+
+    def get_make(self):
+        return self.make
+
+    def set_model(self, model):
+        self.model = model
+
+    def get_model(self):
+        return self.model
+
+    def set_year(self, year):
+        self.year = year
+
+    def get_year(self):
+        return self.year
+
+    def set_speed(self, speed):
+        self.speed = speed
+
+    def get_speed(self):
+        return self.speed
+
+my_car = Car()
+my_car.set_make("Toyota")
+my_car.set_model("Camry")
+my_car.set_year(2022)
+my_car.set_speed(100)
+
+print("Make:", my_car.get_make())
+print("Model:", my_car.get_model())
+print("Year:", my_car.get_year())
+print("Speed:", my_car.get_speed())
