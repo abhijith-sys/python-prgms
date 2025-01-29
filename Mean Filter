@@ -1,0 +1,43 @@
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+
+def mean_filter(image, kernel_size):
+    height, width = image.shape
+    filtered_image = np.zeros_like(image)
+    padded_image = np.pad(image, pad_width=kernel_size // 2, mode='constant', constant_values=0)
+    
+    # Sliding window to apply the mean filter
+    for i in range(height):
+        for j in range(width):
+            kernel_region = padded_image[i:i+kernel_size, j:j+kernel_size]
+            filtered_image[i, j] = np.mean(kernel_region)
+    
+    # Ensure pixel values are within valid range (0-255)
+    filtered_image = np.clip(filtered_image, 0, 255).astype(np.uint8)
+    return filtered_image
+
+# Load and process the image
+image = Image.open("img/my_img.jpg").convert('L')  # Convert to grayscale
+image_array = np.array(image)
+
+# Apply mean filter with a kernel size of 5
+kernel_size = 5
+filtered_image = mean_filter(image_array, kernel_size)
+
+# Display original and filtered images
+plt.figure(figsize=(10, 5))
+
+# Original image
+plt.subplot(1, 2, 1)
+plt.imshow(image_array, cmap='gray')
+plt.title("Original Image")
+plt.axis('off')
+
+# Filtered image
+plt.subplot(1, 2, 2)
+plt.imshow(filtered_image, cmap='gray')
+plt.title("Filtered Image")
+plt.axis('off')
+
+plt.show()
