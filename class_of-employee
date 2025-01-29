@@ -1,0 +1,24 @@
+class Employee:
+ def __init__(self):
+ self.name = ""
+ self.salary = 0.0
+ self.job_title = ""
+ def set_name(self, name):
+ self.name = name
+ def get_name(self):
+ return self.name
+ def set_salary(self, salary):
+ self.salary = salary
+ def get_salary(self):
+ return self.salary
+ def set_job_title(self, job_title):
+ self.job_title = job_title
+ def get_job_title(self):
+ return self.job_title
+employee = Employee()
+employee.set_name("John Doe")
+employee.set_salary(50000.0)
+employee.set_job_title("Software Engineer")
+print("Name:", employee.get_name())
+print("Salary:", employee.get_salary())
+print("Job Title:", employee.get_job_title())
