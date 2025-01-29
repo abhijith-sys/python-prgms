@@ -1,0 +1,14 @@
+#
+from PIL import Image
+import numpy
+
+
+def grayscale_to_array(image):
+    img = Image.open(image).convert("L")
+    image_array = numpy.array(img)
+    return image_array
+
+
+img_path = "img/my_img.jpg"
+array_of_numbers = grayscale_to_array(img_path)
+print(array_of_numbers)
