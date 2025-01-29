@@ -1,0 +1,32 @@
+import turtle
+def draw_square(size):
+ for _ in range(4):
+ turtle.forward(size)
+ turtle.right(90)
+def draw_circle(size):
+ turtle.circle(size)
+def draw_triangle(size):
+ for _ in range(3):
+ turtle.forward(size)
+ turtle.right(120)
+def draw_hexagon(size):
+ for _ in range(6):
+ turtle.forward(size)
+ turtle.right(60)
+shape = input("Enter the shape to be drawn (square/circle/triangle/hexagon): ")
+size = int(input("Enter the size of the shape: "))
+turtle.speed(1)
+turtle.penup()
+turtle.goto(-100, 0)
+turtle.pendown()
+if shape == "square":
+ draw_square(size)
+elif shape == "circle":
+ draw_circle(size)
+elif shape == "triangle":
+ draw_triangle(size)
+elif shape == "hexagon":
+ draw_hexagon(size)
+else:
+ print("Invalid shape entered.")
+turtle.done()
